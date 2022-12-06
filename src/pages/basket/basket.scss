@@ -1,0 +1,81 @@
+.basket {
+  width: 100%;
+  .title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 160px;
+    font-family: 'Montserrat Alternates';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 59px;
+    text-align: center;
+    color: #000000;
+  }
+
+  .container {
+    background: #fbfaf6;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 50px 0 50px;
+    padding: 0 80px 0 80px;
+  }
+
+  hr {
+    width: 95%;
+  }
+
+  .total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 100px 0 100px;
+
+    .left {
+      font-family: 'IBM Plex Sans';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 31px;
+
+      color: #000000;
+    }
+    .right {
+      font-family: 'IBM Plex Sans';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 31px;
+
+      color: #000000;
+    }
+  }
+
+  .button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 50px;
+      border: 2px solid #6b9a6f;
+      background: #fff;
+      font-size: 20px;
+      font-weight: bold;
+      font-family: 'IBM Plex Sans';
+      padding: 20px;
+      margin-bottom: 30px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #6b9a6f;
+        color: white;
+      }
+    }
+  }
+}

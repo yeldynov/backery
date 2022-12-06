@@ -1,0 +1,97 @@
+.home {
+  .title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 160px;
+    font-family: 'Montserrat Alternates';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 59px;
+    text-align: center;
+    color: #000000;
+  }
+
+  .around {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+
+    .line {
+      width: 80px;
+      height: 2px;
+
+      background: rgba(114, 51, 14, 0.3);
+      border-radius: 6px;
+    }
+  }
+
+  .item {
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+
+      .item-text-wide {
+        flex: 1.5;
+        font-family: 'IBM Plex Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 26px;
+        color: #000000;
+        text-align: center;
+        padding-top: 50px;
+        padding-bottom: 40px;
+      }
+    }
+
+    .subtitle {
+      font-family: 'IBM Plex Sans';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 36px;
+      line-height: 47px;
+      text-align: center;
+      color: #000000;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 10px;
+    }
+
+    .col {
+      display: flex;
+
+      .item-text {
+        flex: 1.2;
+        font-family: 'IBM Plex Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 26px;
+        color: #000000;
+      }
+
+      .item-image {
+        flex: 1;
+      }
+    }
+  }
+
+  .yellow-container {
+    background-color: rgba(246, 231, 223, 0.58);
+    padding: 150px 150px 50px 150px;
+    padding-top: 0;
+  }
+
+  .white-container {
+    background-color: #fff;
+    padding: 150px 150px 50px 150px;
+    padding-top: 0;
+  }
+}

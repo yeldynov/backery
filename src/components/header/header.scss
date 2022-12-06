@@ -1,0 +1,89 @@
+.header {
+  background-image: url('../../assets/header-bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 676px;
+  width: auto;
+  position: relative;
+
+  .header-top {
+    padding: 30px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    button {
+      height: inherit;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+    }
+
+    .left {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+
+      .phone {
+        font-family: 'IBM Plex Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 31px;
+        color: #fbfaf6;
+      }
+    }
+
+    .right {
+      background-color: rgba(255, 255, 255, 0.15);
+      height: 40px;
+      display: flex;
+      border-bottom: 1px solid #fff;
+
+      input {
+        border: none;
+        height: inherit;
+        background-color: transparent;
+        color: #fff;
+        outline: none;
+
+        font-family: 'IBM Plex Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        color: #fbfaf6;
+
+        &:hover,
+        &:active {
+          background-color: rgba(255, 255, 255, 0.25);
+        }
+      }
+    }
+  }
+
+  .header-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .title {
+      font-family: 'Lemon';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 52px;
+      line-height: 68px;
+      color: #fff;
+    }
+
+    .subtitle {
+      font-family: 'Lemon';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 31px;
+
+      color: #ffffff;
+    }
+  }
+}
