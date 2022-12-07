@@ -1,3 +1,5 @@
+@import '../../app.scss';
+
 .header {
   background-image: url('../../assets/header-bg.png');
   background-repeat: no-repeat;
@@ -6,11 +8,19 @@
   width: auto;
   position: relative;
 
+  @include mobile {
+    height: 100%;
+  }
+
   .header-top {
     padding: 30px 50px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @include mobile {
+      flex-direction: column;
+    }
 
     button {
       height: inherit;
@@ -74,6 +84,7 @@
       font-size: 52px;
       line-height: 68px;
       color: #fff;
+      text-align: center;
     }
 
     .subtitle {
@@ -82,8 +93,11 @@
       font-weight: 400;
       font-size: 24px;
       line-height: 31px;
-
+      text-align: center;
       color: #ffffff;
+      @include mobile {
+        margin-bottom: 20px;
+      }
     }
   }
 }

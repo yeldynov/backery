@@ -1,7 +1,12 @@
+@import '../../app.scss';
 .navbar {
   display: flex;
   align-items: center;
   width: auto;
+
+  @include mobile {
+    flex-direction: column;
+  }
 
   .button {
     display: flex;

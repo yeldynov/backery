@@ -1,3 +1,5 @@
+@import '../../app.scss';
+
 .footer {
   .footer-top {
     background-image: url('../../assets/footer-banner.png');
@@ -28,6 +30,12 @@
     text-align: center;
     color: #fff;
     cursor: pointer;
+
+    @include mobile {
+      flex-direction: column;
+      font-size: 14px;
+      line-height: 1;
+    }
   }
 
   .footer-bottom {
