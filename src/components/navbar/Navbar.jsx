@@ -1,8 +1,12 @@
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import './navbar.scss';
 
 const Navbar = () => {
+  const products = useSelector((state) => state.cart.products);
+
   return (
     <div className='navbar'>
       <NavLink
@@ -44,6 +48,12 @@ const Navbar = () => {
         }
       >
         Basket
+        <div className='shopping-icon'>
+          <ShoppingCartOutlinedIcon />
+          {products.length !== 0 && (
+            <span className='products-length'>{products.length}</span>
+          )}
+        </div>
       </NavLink>
     </div>
   );

@@ -61,6 +61,18 @@
     flex-direction: column;
     gap: 10px;
 
+    .removeBtn {
+      background-color: #9a6b6b;
+      border-radius: 5px;
+      border: none;
+      padding: 5px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #ba6f6f;
+      }
+    }
+
     .weight {
       display: flex;
       gap: 10px;

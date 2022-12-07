@@ -1,9 +1,21 @@
+import { useEffect, useState } from 'react';
 import './basket-item.scss';
+import { removeItem, resetCart } from '../../redux/cartReducer';
+import { useDispatch } from 'react-redux';
 
 const BasketItem = ({ product }) => {
-  const { img, name, price, compounds, baker } = product;
+  const { id, img, name, price, compounds, baker, quantity } = product;
+  const [quantityNew, setQuantityNew] = useState(quantity);
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setTotalPrice((quantityNew * price) / 100);
+  }, [quantityNew, setQuantityNew, price]);
+
   return (
-    <div className='basket-item'>
+    <div className='basket-item' key={id}>
       <img src={img} alt='' />
       <div className='desc'>
         <div className='desc-title'>{name}</div>
@@ -13,7 +25,7 @@ const BasketItem = ({ product }) => {
             <u>Compounds:</u>
           </p>
           {compounds.map((comp) => (
-            <p>{comp}</p>
+            <p key={Math.random()}>{comp}</p>
           ))}
         </div>
         <div className='baker'>Baker: {baker}</div>
@@ -43,14 +55,29 @@ const BasketItem = ({ product }) => {
       <div className='amount'>
         <div className='weight'>
           <span>weight:</span>
-          <input className='grams' type='number' value={100} step={100} />g
-          <button className='btnPlus'>+</button>
-          <button className='btnMinus'>-</button>
+          <span className='grams'>{quantityNew} g</span>
+          <button
+            className='btnPlus'
+            onClick={() => setQuantityNew((prev) => prev + 100)}
+          >
+            +
+          </button>
+          <button
+            className='btnMinus'
+            onClick={() =>
+              setQuantityNew((prev) => (prev === 100 ? 100 : prev - 100))
+            }
+          >
+            -
+          </button>
         </div>
         <div className='quantity'>
           <span>amount:</span>
-          <span className='amount'>{price}£</span>
+          <span className='amount'>{totalPrice}£</span>
         </div>
+        <button className='removeBtn' onClick={() => dispatch(removeItem(id))}>
+          remove from basket
+        </button>
       </div>
     </div>
   );

@@ -1,51 +1,99 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { removeItem, resetCart } from '../../redux/cartReducer';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+
 import BasketItem from '../../components/basket-item/BasketItem';
 import './basket.scss';
 
-const DUMMY_PRODUCTS = [
-  {
-    id: 1,
-    name: 'Dark wheat bread',
-    price: 0.5,
-    img: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80',
-    compounds: ['premium flour', 'water', 'sourdough from rye bran and flour'],
-    baker: 'John Walkins Jr.',
-  },
-  {
-    id: 2,
-    name: 'White rye bread',
-    price: 0.45,
-    img: 'https://images.unsplash.com/photo-1589367920969-ab8e050bbb04?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80',
-    compounds: ['premium flour', 'water', 'sourdough from rye bran and flour'],
-    baker: 'John Walkins Jr.',
-  },
-  {
-    id: 3,
-    name: 'Dark wheat bread',
-    price: 1.0,
-    img: 'https://images.unsplash.com/photo-1567042661848-7161ce446f85?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=465&q=80',
-    compounds: ['premium flour', 'water', 'sourdough from rye bran and flour'],
-    baker: 'John Walkins Jr.',
-  },
-];
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 800,
+  bgcolor: 'rgba(246, 231, 223, 0.54)',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 2,
+};
 
 const Basket = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const products = useSelector((state) => state.cart.products);
+  console.log(products);
+
+  const total = () => {
+    let total = 0;
+    products?.forEach((item) => (total += item.totalPrice));
+    console.log(total);
+    return total.toFixed(2);
+  };
+
+  // modal
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => {
+    setOpen(false);
+    console.log(products); // TODO: send order to backend.
+    dispatch(resetCart());
+    window.scrollTo(0, 0);
+    navigate('/contacts');
+  };
+
+  const orderNumber = (Math.random() * 10000000).toFixed();
+
   return (
-    <div className='basket'>
-      <div className='title'>Basket</div>
-      <div className='container'>
-        {DUMMY_PRODUCTS.map((item) => (
-          <BasketItem product={item} />
-        ))}
+    <>
+      <div className='basket'>
+        <div className='title'>Basket</div>
+        {products.length > 0 ? (
+          <>
+            <div className='container'>
+              {products?.map((item) => (
+                <BasketItem product={item} key={item.id} />
+              ))}
+            </div>
+            <hr />
+            <div className='total'>
+              <div className='left'>Total</div>
+              <div className='right'>{total()}£</div>
+            </div>
+            <div className='button-container'>
+              <button onClick={handleOpen}>Create Order</button>
+            </div>
+          </>
+        ) : (
+          <h1>
+            No products in the Basket. <br /> Maybe add one?
+          </h1>
+        )}
       </div>
-      <hr />
-      <div className='total'>
-        <div className='left'>Total</div>
-        <div className='right'>2.95£</div>
-      </div>
-      <div className='button-container'>
-        <button>Create Order</button>
-      </div>
-    </div>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby='modal-modal-title'
+        aria-describedby='modal-modal-description'
+        className='modal'
+      >
+        <Box sx={style}>
+          <Typography id='modal-modal-title' variant='h6' component='h2'>
+            Your Order Placed!
+          </Typography>
+          <Typography id='modal-modal-description' sx={{ mt: 2 }}>
+            Thanks for ordering at Lory's Bakery! <br />
+            Your order number is <b>#{orderNumber}</b>. <br /> You can pick up
+            your order from 7 am to 5 pm.
+          </Typography>
+        </Box>
+      </Modal>
+    </>
   );
 };
 
