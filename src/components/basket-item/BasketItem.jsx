@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './basket-item.scss';
-import { removeItem, resetCart } from '../../redux/cartReducer';
+import { removeItem } from '../../redux/cartReducer';
 import { useDispatch } from 'react-redux';
 
 const BasketItem = ({ product }) => {
